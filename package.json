@@ -1,0 +1,62 @@
+{
+  "name": "beyond-diff",
+  "displayName": "Beyond Diff",
+  "description": "Compare files side-by-side, like Beyond Compare",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "beyondDiff.openDiff",
+        "title": "Beyond Diff: Compare Two Files"
+      },
+      {
+        "command": "beyondDiff.selectForCompare",
+        "title": "Beyond Diff: Select for Compare"
+      },
+      {
+        "command": "beyondDiff.compareWithSelected",
+        "title": "Beyond Diff: Compare with Selected"
+      },
+      {
+        "command": "beyondDiff.compareActiveWithFile",
+        "title": "Beyond Diff: Compare Active File with..."
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "beyondDiff.selectForCompare",
+          "group": "beyondDiff@1"
+        },
+        {
+          "command": "beyondDiff.compareWithSelected",
+          "group": "beyondDiff@2",
+          "when": "beyondDiff.hasSelectedFile"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "beyondDiff.compareActiveWithFile",
+          "group": "beyondDiff@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  }
+}
